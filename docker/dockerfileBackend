@@ -1,0 +1,3 @@
+FROM openjdk:8
+COPY backend/teamcontact.jar /app/teamcontact.jar
+ENTRYPOINT java -jar /app/teamcontact.jar 

@@ -1,0 +1,72 @@
+<p></p>
+<mat-card class="container-fluid mat-elevation-z8">
+    <mat-card-header>
+        <mat-card-title>
+            Edit Contact
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <!-- <div class="alert alert-danger" *ngIf="!isStartEndSessionValid"> Erro</div> -->
+        <form [formGroup]="contactForm">
+            <fieldset [disabled]="editable">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Firstname</mat-label>
+                    <input type="text" matInput placeholder="Muster" required formControlName="firstname"
+                        maxlength="20" />
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Lastname</mat-label>
+                    <input type="text" matInput placeholder="Mustermann" required formControlName="lastname"
+                        maxlength="20" />
+                </mat-form-field>
+            </fieldset>
+            <fieldset [disabled]="editable">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput placeholder="m.mustermann@outlook.com"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required formControlName="email" />
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Phone</mat-label>
+                    <input type="tel" matInput placeholder="004917635351635" formControlName="phone" pattern="^[0-9]{10,16}$" />
+                </mat-form-field>
+            </fieldset>
+            <div formGroupName="address">
+                <fieldset [disabled]="editable">
+                    <legend>
+                        <mat-label>Address</mat-label>
+                    </legend>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Street</mat-label>
+                        <input type="text" matInput placeholder="Kennedy-Platz" formControlName="street" />
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>HousNo</mat-label>
+                        <input type="number" matInput placeholder="176" formControlName="housNo"
+                            pattern="^[0-9]{1,5}$" />
+                    </mat-form-field>
+                    <fieldset [disabled]="editable">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>PoBox</mat-label>
+                            <input type="number" matInput placeholder="57078" formControlName="poBox" pattern="^[0-9]{0,5}$" />
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>City</mat-label>
+                            <input type="text" matInput placeholder="Siegen" formControlName="city" maxlength="20" />
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Country</mat-label>
+                            <input type="text" matInput placeholder="Germany" formControlName="country" maxlength="20" />
+                        </mat-form-field>
+                    </fieldset>
+                </fieldset>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button class="btn btn-primary" (click)="edit()" *ngIf="editable">Edit</button>
+        <button class="btn btn-success" (click)="editContact()" [disabled]="!contactForm.valid"
+            *ngIf="!editable">Save</button>
+        <button class="btn btn-secondary" (click)="backToContacts()">back to Contacts</button>
+    </mat-card-actions>
+</mat-card>

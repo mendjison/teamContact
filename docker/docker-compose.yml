@@ -1,0 +1,16 @@
+#docker-compose file
+version: "3.6"
+
+services:
+  docker-backend:
+    container_name: backend
+    build:
+      dockerfile: dockerfileBackend
+      context: .
+    restart: always
+    ports: 
+      - 8080:8080
+    expose: 
+      - 8080
+volumes: 
+  mysqlData:

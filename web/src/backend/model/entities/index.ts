@@ -1,0 +1,1 @@
+export {Address, Contact} from './contact-entities';

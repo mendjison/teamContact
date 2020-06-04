@@ -1,0 +1,15 @@
+.mat-cell, .mat-header-cell {
+  padding: 0px 20px 0px 10px;
+}
+h2{
+  margin-left: 200px;
+}
+.mat-header-cell {
+  font-size: 15px;
+  font-weight:bold;
+}
+
+.create-contact {
+  margin-top: 20px;
+  margin-left: 20px;
+}
