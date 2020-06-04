@@ -4,7 +4,7 @@ import * as repository from 'src/backend/model/repository/index';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-contact',
@@ -27,8 +27,8 @@ export class EditContactComponent implements OnInit {
   });
   contactInit: model.Contact = null;
   editable: boolean = true;
+  errorMessage: string = '';
 
-  //, Validators.compose([Validators.minLength(7), Validators.maxLength(8)])
   constructor(private fb: FormBuilder,
     private router: Router,
     @Inject('IContactRepository') private contactService: repository.IContactRepository,
@@ -53,11 +53,12 @@ export class EditContactComponent implements OnInit {
 
       (httpContact: HttpResponse<model.Contact>) => {
         this.successfullEdit('Update Contact successfull', 'editContact');
-        this.router.navigate(['/contacts']);
+        this.contactForm.reset();
       },
-      (err) => console.log(err)
+      (httpErrorResponse: HttpErrorResponse) => {
+        this.errorMessage = httpErrorResponse.error.message;
+      }
     );
-    this.contactForm.reset();
   }
 
   edit(): void {

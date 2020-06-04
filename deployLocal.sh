@@ -21,7 +21,7 @@ echo "build project successfull"
 echo "backend und database deploying successfull"
 
 #echo "deploying frontend starting"
- cd ../web
- docker-compose up --build -d
- echo "frontend deploying successfull"
- echo "Done"
+ #cd ../web
+ #docker-compose up --build -d
+ #echo "frontend deploying successfull"
+ #echo "Done"
