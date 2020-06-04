@@ -19,9 +19,3 @@ echo "build project successfull"
  echo "stop and delete all containers and images finish"
   docker-compose up --build -d
 echo "backend und database deploying successfull"
-
-#echo "deploying frontend starting"
- #cd ../web
- #docker-compose up --build -d
- #echo "frontend deploying successfull"
- #echo "Done"

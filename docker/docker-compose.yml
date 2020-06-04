@@ -22,5 +22,3 @@ services:
       - 8082:80
     expose: 
       - 8082
-volumes: 
-  mysqlData:
