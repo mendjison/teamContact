@@ -12,8 +12,8 @@ services:
       - 9897:9897
     expose: 
       - 9897
-  web:
-    container_name: web
+  docker_frontend:
+    container_name: frontend
     build: 
       dockerfile: ./Dockerfile
       context: ../web

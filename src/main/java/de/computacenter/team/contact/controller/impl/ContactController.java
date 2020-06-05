@@ -26,6 +26,7 @@ import de.computacenter.team.contact.model.service.IContactService;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/contacts")
+//@Api(value = "Contact")
 public class ContactController implements IContactController{
 
 	@Qualifier("ContactService")
@@ -41,6 +42,7 @@ public class ContactController implements IContactController{
 	}
 
 	@GetMapping
+	//@ApiOperation(value = "findContacts", response = ResponseEntity.class)
 	@Override
 	public ResponseEntity<List<Contact>> findContacts() {
 		List<Contact> contacts = new ArrayList<Contact>();

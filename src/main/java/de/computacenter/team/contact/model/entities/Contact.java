@@ -26,14 +26,11 @@ public class Contact implements Serializable {
 	private String email;
 	@Column(nullable = false, unique = true, length = 17)
 	private String phone;
-	/*
-	 * @ElementCollection
-	 * 
-	 * @CollectionTable(name="Contact_Adress",
-	 * joinColumns=@JoinColumn(name="memberId"))
-	 */
 	@Embedded
 	private Address address;
+	/*
+	 * @ManyToOne(fetch = FetchType.LAZY) private Team team;
+	 */
 
 	public Contact() {}
 
@@ -104,6 +101,12 @@ public class Contact implements Serializable {
 		this.address = address;
 	}
 	
+	/*
+	 * public Team getTeam() { return team; }
+	 * 
+	 * public void setTeam(Team team) { this.team = team; }
+	 */
+
 	@Override
 	public boolean equals(Object object) {
 		if(object instanceof Contact) {
