@@ -27,13 +27,14 @@ export class AddContactComponent implements OnInit {
     })
   });
   errorMessage: string;
-  //, Validators.compose([Validators.minLength(7), Validators.maxLength(8)])
+  isEditError: boolean = false;
   constructor(private fb: FormBuilder,
     private router: Router,
     @Inject('IContactRepository') private contactService: repository.IContactRepository,
     private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.isEditError = false;
     this.errorMessage = '';
   }
 
@@ -48,6 +49,7 @@ export class AddContactComponent implements OnInit {
       },
       (httpErrorResponse: HttpErrorResponse)  => {
         this.errorMessage = httpErrorResponse.error.message;
+        this.isEditError = true;
       }
     );
   }

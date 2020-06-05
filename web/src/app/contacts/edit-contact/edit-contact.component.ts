@@ -28,6 +28,7 @@ export class EditContactComponent implements OnInit {
   contactInit: model.Contact = null;
   editable: boolean = true;
   errorMessage: string = '';
+  isEditError: boolean = false;
 
   constructor(private fb: FormBuilder,
     private router: Router,
@@ -36,6 +37,7 @@ export class EditContactComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isEditError = false;
     let id = this.route.snapshot.paramMap.get('id');
     this.contactService.getContactById(id)
       .subscribe(
@@ -57,6 +59,8 @@ export class EditContactComponent implements OnInit {
       },
       (httpErrorResponse: HttpErrorResponse) => {
         this.errorMessage = httpErrorResponse.error.message;
+        this.isEditError = true;
+
       }
     );
   }
