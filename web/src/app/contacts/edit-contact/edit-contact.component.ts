@@ -55,12 +55,15 @@ export class EditContactComponent implements OnInit {
 
       (httpContact: HttpResponse<model.Contact>) => {
         this.successfullEdit('Update Contact successfull', 'editContact');
+        this.backToContacts()
         this.contactForm.reset();
       },
       (httpErrorResponse: HttpErrorResponse) => {
         this.errorMessage = httpErrorResponse.error.message;
+        if (this.errorMessage === '' || this.errorMessage === undefined) {
+          this.errorMessage = 'email or Phone or firstname and lastname already exist';
+        }
         this.isEditError = true;
-
       }
     );
   }

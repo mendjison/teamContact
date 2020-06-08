@@ -22,11 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 import de.computacenter.team.contact.controller.IContactController;
 import de.computacenter.team.contact.model.entities.Contact;
 import de.computacenter.team.contact.model.service.IContactService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/contacts")
-//@Api(value = "Contact")
+@Api(value = "/api/contacts")
 public class ContactController implements IContactController{
 
 	@Qualifier("ContactService")
@@ -42,7 +44,7 @@ public class ContactController implements IContactController{
 	}
 
 	@GetMapping
-	//@ApiOperation(value = "findContacts", response = ResponseEntity.class)
+	@ApiOperation(value = "findContacts", response = ResponseEntity.class)
 	@Override
 	public ResponseEntity<List<Contact>> findContacts() {
 		List<Contact> contacts = new ArrayList<Contact>();

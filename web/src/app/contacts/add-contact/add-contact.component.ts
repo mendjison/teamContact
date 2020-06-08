@@ -48,8 +48,12 @@ export class AddContactComponent implements OnInit {
         this.backToContacts();
       },
       (httpErrorResponse: HttpErrorResponse)  => {
-        this.errorMessage = httpErrorResponse.error.message;
+        this.errorMessage = httpErrorResponse.error.message; 
+        if (this.errorMessage === '' || this.errorMessage === undefined) {
+          this.errorMessage = 'email or Phone or firstname and lastname already exist';
+        }
         this.isEditError = true;
+
       }
     );
   }

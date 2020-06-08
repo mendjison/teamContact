@@ -3,24 +3,44 @@ package de.computacenter.team.contact.config;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import de.computacenter.team.contact.model.entities.Address;
 import de.computacenter.team.contact.model.entities.Contact;
 import de.computacenter.team.contact.model.service.IContactService;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @Configuration
-@EnableWebMvc
-public class BeanConfig implements WebMvcConfigurer{
+@EnableSwagger2
+public class BeanConfig {
 
-	@Override public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**") .allowedOrigins("**") .allowedMethods("PUT",
-				"DELETE", "POST", "GET"); 
-		}
+	@Bean
+	public Docket swaggerConfiguration() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.select()
+				.paths(PathSelectors.ant("/api/*"))
+				.apis(RequestHandlerSelectors.basePackage("de.computacenter.team.contact"))
+				.build()
+				.apiInfo(apiEndPointsInfo());
+	}
 	
+	private ApiInfo apiEndPointsInfo() {
+		return new ApiInfoBuilder().title("Team's Contacts REST API")
+				.description("Teamcontacts  REST API")
+				.contact(new springfox.documentation.service.Contact("mendji",  "www.javaguides.net", "k.mendji@yahoo.de"))
+				.license("Apache 2.0")
+				.licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
+				.version("1.0.0")
+				.build();
+	}
+	
+
 	@Bean
 	public CommandLineRunner loadData(IContactService contactService) {
 		
